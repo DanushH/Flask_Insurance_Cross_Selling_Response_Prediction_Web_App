@@ -1,6 +1,7 @@
 import pandas as pd
 import joblib
 from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.utils import resample
 from sklearn.model_selection import train_test_split
 
 
@@ -47,6 +48,18 @@ def clean_data():
         .str.lower()
     )
     print(df.columns)
+
+    df_majority = df[df.response == 0]
+    df_minority = df[df.response == 1]
+
+    df_majority_downsampled = resample(
+        df_majority, replace=False, n_samples=len(df_minority), random_state=42
+    )
+
+    df = pd.concat([df_majority_downsampled, df_minority])
+
+    print(df.response.value_counts())
+    print(f"\ndownsampled train data rows: {df.shape[0]}")
 
     X = df.drop("response", axis=1)
     y = df["response"]
