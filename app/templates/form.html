@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insurance Offer Prediction</title>
 </head>
+
 <body>
     <h1>Predict Customer Response to Insurance Offer</h1>
     <form method="POST">
 
         <label>Gender:</label>
-        <input type="text" name="Gender" required><br>
+        <select name="Gender" required>
+            <option value="Select Gender" disabled selected>Select Gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+        </select>
+        <br>
 
         <label>Age:</label>
-        <input type="number" name="Age" required><br>
+        <input type="number" name="Age" min="18" required><br>
 
         <label>Driving License:</label>
-        <input type="text" name="Driving_License" required><br>
+        <select name="Driving_License" required>
+            <option value="" disabled selected>Driving Licence Available?</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <br>
 
         <label>Region Code:</label>
         <input type="number" name="Region_Code" required><br>
 
         <label>Previously Insured:</label>
-        <input type="text" name="Previously_Insured" required><br>
+        <select name="Previously_Insured" required>
+            <option value="" disabled selected>Vehicle Insured Previously?</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <br>
 
         <label>Vehicle Damage:</label>
-        <input type="text" name="Vehicle_Damage" required><br>
+        <select name="Vehicle_Damage" required>
+            <option value="" disabled selected>Vehicle Damaged?</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <br>
 
         <label>Annual Premium:</label>
-        <input type="number" name="Annual_Premium" required><br>
+        <input type="number" name="Annual_Premium" min="10000" required><br>
 
         <label>Policy Sales Channel:</label>
         <input type="number" name="Policy_Sales_Channel" required><br>
@@ -41,14 +63,15 @@
 
         <input type="submit" value="Predict">
     </form>
-    
+
     {% if prediction is not none %}
-        {% if prediction == 1 %}
-            <h2>Prediction: Positive Response</h2>
-        {% else %}
-            <h2>Prediction: Negative Response</h2>
-        {% endif %}
+    {% if prediction == 1 %}
+    <h2>Prediction: Positive Response</h2>
+    {% elif prediction == 0 %}
+    <h2>Prediction: Negative Response</h2>
+    {% endif %}
     {% endif %}
 
 </body>
+
 </html>
