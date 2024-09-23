@@ -1,4 +1,4 @@
-<h1 align="center"> Flask Insurance Cross-Selling Response Prediction Web App</h1>
+<h1 align="center"> Insurance Cross-Selling Response Prediction Web App</h1>
 
 <br>
 
@@ -31,6 +31,10 @@ conda activate insurance
 
 ```bash
 pip install -r requirements.txt
+```
+
+```bash
+python app/app.py
 ```
 
 ## Project Status
